@@ -1,0 +1,842 @@
+@top-up-color: #000;
+@top-down-color: #005aa0;
+@top_height: 80px;
+
+@keyframes works3Move {
+  0% {
+    transform: translateX(0px) rotateY(0deg);
+  }
+  49% {
+    transform: translateX(-490px) rotateY(0deg);
+  }
+  50% {
+    transform: translateX(-500px) rotateY(180deg);
+  }
+  100% {
+    transform: translateX(0px) rotateY(180deg);
+  }
+}
+
+//左往右走,左边隐藏，右边出来
+@keyframes leftHide {
+  0% {
+    visibility: visible;
+  }
+  50% {
+    transform: translateX(-40%) rotateY(30deg) scale(0.8);
+  }
+  100% {
+    transform: translateZ(-200px);
+  }
+
+}
+
+@keyframes rightShow {
+  0% {
+    visibility: hidden;
+    transform: translateZ(-200px);
+  }
+  50% {
+    transform: translateX(40%) rotateY(-30deg) scale(0.8);
+  }
+  100% {
+  }
+}
+
+//从右往左，右隐藏，左出来
+@keyframes leftShow {
+  0% {
+    visibility: hidden;
+    transform: translateZ(-200px);
+
+    //#content .constant_list .home .home2 {
+    //  visibility: visible;
+    //}
+  }
+  50% {
+    transform: translateX(-40%) rotateY(30deg) scale(0.8);
+  }
+  100% {
+  }
+}
+
+@keyframes rightHide {
+  0% {
+    visibility: visible;
+  }
+  50% {
+    transform: translateX(40%) rotateY(-30deg) scale(0.8);
+  }
+  100% {
+    transform: translateZ(-200px);
+  }
+}
+
+//home2图片圆点效果
+@keyframes home2Button {
+  0% {
+    visibility: visible;
+  }
+  1% {
+    visibility: hidden;
+  }
+  99% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+
+.commonTitle {
+  color: #009ee0;
+  font-size: 80px;
+  line-height: 0.8;
+  font-weight: bold;
+  letter-spacing: -5px;
+}
+
+.commonText {
+  color: white;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font: 14px '微软雅黑';
+}
+
+//开机动画
+#mask {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 99;
+  .up {
+    width: 100%;
+    height: 50%;
+    background-color: deepskyblue;
+    transition: 1s height;
+  }
+  .down {
+    width: 100%;
+    height: 50%;
+    background-color:deepskyblue ;
+    position: absolute;
+    bottom: 0;
+    transition: 1s height;
+  }
+  .line{
+    height: 4px;
+    width: 0;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -2px;
+    z-index: 100;
+    transition: 1s width;
+  }
+}
+
+//头部样式
+#head {
+  background-color: #FFFFFF !important;
+  width: 100%;
+
+  .headMain {
+    width: 1100px;
+    height: @top_height;
+    margin: 0 auto;
+    position: relative;
+
+    //logo样式
+    .logo {
+      margin-top: 30px;
+      float: left;
+    }
+
+    //音乐
+    .music {
+      width: 14px;
+      height: 14px;
+      background: url("../img/musicoff.gif") no-repeat;
+      float: left;
+      margin: 50px 0 0 5px;
+    }
+
+    //文字导航样式
+    .nav {
+      margin-top: 50px;
+      float: right;
+
+      li {
+        margin-left: 40px;
+        float: left;
+        position: relative;
+
+        .up {
+          color: @top-up-color;
+          position: absolute;
+          width: 0;
+          overflow: hidden;
+          transition: width 0.5s;
+        }
+
+        &:hover .up {
+          width: 100%;
+        }
+
+        .down {
+          color: @top-down-color;
+        }
+
+      }
+    }
+
+    //三角形
+    .arrow {
+      position: absolute;
+      top: @top_height;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border: 10px solid;
+      border-bottom: none;
+      border-color: white transparent transparent transparent;
+      transition: left 0.5s;
+      z-index: 2;
+    }
+  }
+
+}
+
+//内容区
+#content {
+  //background-color: #5f5750;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+
+  .constant_list {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: top 0.5s;
+
+    > li {
+      position: relative;
+      background-position: 50% 50% !important;
+      overflow: hidden;
+
+      > div {
+        width: 1100px;
+        height: 520px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+
+      }
+    }
+
+    //第一屏
+    //设置背景图片
+    .home {
+      background: url("../img/bg1.jpg") no-repeat;
+
+      .home1 {
+        width: 100%;
+        height: 100%;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        transition: transform 1s, opacity 1s;
+
+        > li {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          visibility: hidden;
+
+          &:nth-of-type(1) {
+            background-color: #dc6c5f;
+          }
+
+          &:nth-of-type(2) {
+            background-color: #95dc84;
+          }
+
+          &:nth-of-type(3) {
+            background-color: #64b9d2;
+          }
+
+          &:nth-of-type(4) {
+            background-color: #000000;
+          }
+
+          &.active {
+            visibility: visible;
+          }
+
+          //从左往右
+          &.leftHide {
+            visibility: hidden;
+            animation: 1s leftHide 1 linear;
+          }
+
+          &.rightShow {
+            visibility: visible;
+            animation: 1s rightShow 1 linear;
+          }
+
+          //从右往左
+          &.leftShow {
+            visibility: visible;
+            animation: 1s leftShow 1 linear;
+          }
+
+          &.rightHide {
+            visibility: hidden;
+            animation: 1s rightHide 1 linear;
+          }
+
+          > div {
+            color: white;
+            text-align: center;
+            margin-top: 200px;
+          }
+        }
+
+
+      }
+
+      .home2 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        visibility: visible;
+        transition: transform 1s, opacity 1s;
+
+        > li {
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          background-color: rgba(255, 255, 255, .5);
+          display: inline-block;
+          box-shadow: 0 0 4px rgba(25, 25, 25, 0.8);
+          cursor: pointer;
+
+          &.active {
+            background-color: white;
+          }
+        }
+
+        &.home2Show {
+          animation: 1s home2Button 1 linear;
+        }
+      }
+    }
+
+    //第二屏
+    .course {
+      background: url("../img/bg2.jpg") no-repeat;
+
+      > div {
+        .course1 {
+          margin: 50px;
+          z-index: 2;
+          position: relative;
+        }
+
+        .course2 {
+          margin-left: 50px;
+          width: 400px;
+          position: relative;
+          z-index: 2;
+        }
+
+        .course3 {
+          width: 480px;
+          position: absolute;
+          right: 50px;
+          top: 70px;
+          z-index: 2;
+
+          .line {
+            position: absolute;
+            width: 9px;
+            height: 410px;
+            background: url("../img/plus_row.png") no-repeat;
+            top: -7px;
+
+            &:nth-child(1) {
+              left: -4.5px;
+            }
+
+            &:nth-child(2) {
+              left: 115.5px;
+            }
+
+            &:nth-child(3) {
+              left: 235.5px;
+            }
+
+            &:nth-child(4) {
+              left: 355.5px;
+            }
+
+            &:nth-child(5) {
+              left: 475.5px;
+            }
+
+
+          }
+
+          .item {
+            width: 120px;
+            height: 132px;
+            float: left;
+            position: relative;
+            perspective: 500px;
+            transform-style: preserve-3d;
+
+            .backface, .face {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              left: 0;
+              box-sizing: border-box;
+              padding: 15px;
+              transform-style: preserve-3d;
+              transition: transform 1s;
+            }
+
+            .backface {
+              background-position: 50% 50% !important;
+            }
+
+            &:nth-of-type(1) .backface {
+              background: url("../img/apcoa.png") no-repeat;
+            }
+
+            &:nth-of-type(2) .backface {
+              background: url("../img/binoli.png") no-repeat;
+            }
+
+            &:nth-of-type(3) .backface {
+              background: url("../img/bks.png") no-repeat;
+            }
+
+            &:nth-of-type(4) .backface {
+              background: url("../img/gu.png") no-repeat;
+            }
+
+            &:nth-of-type(5) .backface {
+              background: url("../img/hlx.png") no-repeat;
+            }
+
+            &:nth-of-type(6) .backface {
+              background: url("../img/lbs.png") no-repeat;
+            }
+
+            &:nth-of-type(7) .backface {
+              background: url("../img/leonberg.png") no-repeat;
+            }
+
+            &:nth-of-type(8) .backface {
+              background: url("../img/pcwelt.png") no-repeat;
+            }
+
+            &:nth-of-type(9) .backface {
+              background: url("../img/tata.png") no-repeat;
+            }
+
+            &:nth-of-type(10) .backface {
+              background: url("../img/bks.png") no-repeat;
+            }
+
+            &:nth-of-type(11) .backface {
+              background: url("../img/bks.png") no-repeat;
+            }
+
+            &:nth-of-type(12) .backface {
+              background: url("../img/bks.png") no-repeat;
+            }
+
+
+            .face {
+              transform: rotateY(180deg);
+              backface-visibility: hidden;
+              background-color: #00ccff;
+              color: white;
+            }
+
+            &:hover .face {
+              transform: rotateY(360deg);
+            }
+
+            &:hover .backface {
+              transform: rotateY(180deg);
+              backface-visibility: hidden;
+            }
+          }
+
+        }
+
+        .plane1 {
+          width: 359px;
+          height: 283px;
+          position: absolute;
+          left: 300px;
+          top: -100px;
+          background: url("../img/plane1.png") no-repeat;
+          transition: 1s transform;
+        }
+
+        .plane2 {
+          width: 309px;
+          height: 249px;
+          position: absolute;
+          left: -100px;
+          top: 200px;
+          background: url("../img/plane2.png") no-repeat;
+          transition: 1s transform;
+        }
+
+        .plane3 {
+          width: 230px;
+          height: 182px;
+          position: absolute;
+          left: 300px;
+          top: 400px;
+          background: url("../img/plane3.png") no-repeat;
+          transition: 1s transform;
+        }
+      }
+    }
+
+    //第三屏
+    .works {
+      background: url("../img/bg4.jpg") no-repeat;
+
+      div {
+        .works1 {
+          margin: 50px 0 100px 50px;
+          position: relative;
+          z-index: 2;
+        }
+
+        .works2 {
+          margin-left: 50px;
+          position: relative;
+          z-index: 2;
+
+          .item {
+            float: left;
+            width: 220px;
+            height: 133px;
+            margin: 0 1px;
+            position: relative;
+            overflow: hidden;
+
+            &:last-child {
+              width: 332px;
+            }
+
+            &:hover {
+              img {
+                transform: rotate(15deg) scale(1.3);
+              }
+
+              .mask {
+                opacity: 0.8;
+              }
+            }
+
+            img {
+              transition: 1s transform;
+
+            }
+
+            .mask {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              right: 0;
+              left: 0;
+              box-sizing: border-box;
+              padding: 15px;
+              opacity: 0;
+              color: white;
+              background-color: #000000;
+              transition: 1s opacity;
+
+              .icon {
+                width: 32px;
+                height: 34px;
+                margin: 10px auto 0;
+                background: url("../img/zoomico.png") no-repeat;
+                transition: 1s background-position;
+
+                &:hover {
+                  background-position: 0 -35px;
+                }
+              }
+
+            }
+          }
+
+        }
+
+        .works3 {
+          width: 167px;
+          height: 191px;
+          background: url("../img/robot.png") no-repeat;
+          position: absolute;
+          left: 900px;
+          top: 170px;
+          animation: works3Move 8s infinite linear;
+          z-index: 2;
+        }
+      }
+
+      .pencil1 {
+        width: 180px;
+        height: 97px;
+        background: url("../img/pencel1.png") no-repeat;
+        position: absolute;
+        transition: 1s;
+        left: 500px;
+        top: 0;
+      }
+
+      .pencil2 {
+        width: 268px;
+        height: 38px;
+        background: url("../img/pencel2.png") no-repeat;
+        position: absolute;
+        transition: 1s;
+        left: 300px;
+        top: 250px;
+      }
+
+      .pencil3 {
+        width: 441px;
+        height: 231px;
+        background: url("../img/pencel3.png") no-repeat;
+        position: absolute;
+        transition: 1s;
+        left: 650px;
+        top: 300px;
+      }
+    }
+
+    //第四屏
+    .about {
+      background: url("../img/bg3.jpg") no-repeat;
+
+      > div {
+        .about1 {
+          margin: 50px 0 100px 50px;
+        }
+
+        .about2 {
+          width: 400px;
+          margin-left: 50px;
+        }
+
+        .about3 {
+          .item {
+            width: 260px;
+            height: 200px;
+            border: 5px solid rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            position: absolute;
+            z-index: 2;
+            overflow: hidden;
+            transition: 1s transform;
+
+            span, ul {
+              position: absolute;
+              left: 0;
+              top: 0;
+              bottom: 0;
+              right: 0;
+
+            }
+
+            ul {
+              li {
+                float: left;
+                position: relative;
+                overflow: hidden;
+
+                img {
+                  position: absolute;
+                  transition: all 0.5s;
+                }
+              }
+            }
+
+            &:hover {
+
+            }
+
+            &:nth-of-type(1) {
+              left: 750px;
+              top: 50px;
+
+              span {
+                background: url("../img/about2.jpg") no-repeat;
+                transform: scale(1.5);
+                transition: transform 0.5s;
+              }
+            }
+
+            &:nth-of-type(2) {
+              left: 600px;
+              top: 290px;
+
+              span {
+                background: url("../img/about4.jpg") no-repeat;
+                transform: scale(1.5);
+                transition: transform 0.5s;
+              }
+            }
+
+            &:hover {
+              span {
+                transform: scale(1);
+              }
+            }
+          }
+
+        }
+
+        .about4 {
+          width: 357px;
+          height: 998px;
+          position: absolute;
+          background: url("../img/greenLine.png") no-repeat;
+          top: -100px;
+          left: 50%;
+        }
+      }
+
+
+    }
+
+    //第五屏
+    .team {
+      background: url("../img/bg5.jpg") no-repeat;
+
+      > div {
+        .team1 {
+          width: 400px;
+          margin: 50px;
+          float: left;
+          transition: transform 1s;
+        }
+
+        .team2 {
+          width: 400px;
+          margin: 50px;
+          float: right;
+          transition: transform 1s;
+        }
+
+        .team3 {
+          width: 944px;
+          height: 448px;
+          position: absolute;
+          //居中
+          left: 50%;
+          top: 250px;
+          transform: translateX(-50%);
+
+          ul {
+            position: relative;
+            height: 100%;
+
+            li {
+              width: 118px;
+              height: 100%;
+              float: left;
+              background: url("../img/team.png");
+              transition: opacity 1s;
+
+              &:nth-child(1) {
+                background-position: 0, 0;
+              }
+
+              &:nth-child(2) {
+                background-position: -118*1px, 0;
+              }
+
+              &:nth-child(3) {
+                background-position: -118*2px, 0;
+              }
+
+              &:nth-child(4) {
+                background-position: -118*3px, 0;
+              }
+
+              &:nth-child(5) {
+                background-position: -118*4px, 0;
+              }
+
+              &:nth-child(6) {
+                background-position: -118*5px, 0;
+              }
+
+              &:nth-child(7) {
+                background-position: -118*6px, 0;
+              }
+
+              &:nth-child(8) {
+                background-position: -118*7px, 0;
+              }
+            }
+          }
+
+          canvas {
+            position: absolute;
+            top: 0;
+          }
+        }
+
+      }
+    }
+  }
+
+  .dot {
+    position: fixed;
+    top: 50%;
+    right: 0;
+
+    li {
+      width: 10px;
+      height: 10px;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 2px 2px rgba(0, 0, 0, .5);
+      margin-top: 10px;
+      border-radius: 50%;
+    }
+
+    .active {
+      background: #f509f2;
+    }
+
+  }
+}
